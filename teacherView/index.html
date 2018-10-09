@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <title>Quizlock</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+
+	<link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+  	<!-- header -->
+  	<div style="width:100%;height: 3.125rem;background-color:#4257b2;overflow:hidden;padding:0 30px">
+  		<img src="images/header.png" style="position:fixed;top:0;left:0;width:100%"/>
+  	</div>
+
+
+  	<!-- content -->
+  	<div style="padding:25px 50px;">
+  		
+  		<div id="mainContent" style="display:none;">
+	  		
+	  		<!-- Signup Section -->
+	  		<div id="signUp">
+	  			<img id="backgroundImageSignUp" src="images/art-student.png"/>
+	  			<div style="width:50%;float:left;margin-top: 20%;margin-left: 10%;max-width: 500px;">
+		  			<h1 style="color:#455358;margin:0px;width:50%;font-size: 3em;">Quizlock</h1>
+	  				<h3 class="quizletSubtitle">A focus tool for students from Quizlet</h3>
+					<input class="quizetTextInput" type="text" name="className" id="sessionName" placeholder="French 101 - Period 2">
+					<hr>
+					<p style="color:#455358;letter-spacing: 0.0625rem;">YOUR CLASS NAME</p>
+					<br><br>
+					<button class="quizletButton" onclick="newStudySession()">Start session</button>
+				</div>
+			</div>
+		  		
+			<!-- Study session has started -->
+			<div id="studySession" style="clear:both;position:relative;">
+				<div style="margin:20px 30px 0 0;">
+					<img style="height:15px;float:left;margin-top: 7px;margin-right: 7px;" src="images/lock.png"/>
+					<p style="color: #455358;letter-spacing: 0.0625rem;float:left;font-size: 10px;">STUDY SESSION</p>
+				</div>
+				<h2 id="className" style="text-align: left;color:#455358;clear:both;font-size:3rem;margin:0"></h2>
+				
+
+			  	<!-- Student Info -->
+		  		<div style="width:50%;margin-left:30pxfloat:left;position:fixed;display:block" id="studentsTitle">
+		  			<img id="studentCardEmptyLabel1" src="images/waitingStudents.png" style="display:block;margin:0 auto;    margin-top: 20%;"/>
+		  			<h3 class="quizletSubtitle" style="text-align: center;margin-top:30px;" id="studentCardEmptyLabel2"> Waiting for students to join...</h3>
+		  			<div id="studentCardThingsWithStudents" style="display:none;">
+		  				<h3 class="studentListHeader"><span id="focusedStudentCount" style="color:#23b26d;font-size:24px;"></span> Focused students</h3>
+				  		<ul id="focusedStudentList" style="list-style:none;padding:0">
+				  		</ul>
+				  		<h3 class="studentListHeader"><span id="distractedStudentCount" style="color:#ff725b;font-size:24px;"></span> Distracted students</h3>
+				  		<ul id="distractedStudentList" style="list-style:none;padding:0">
+				  		</ul>
+				  	</div>
+		  		</div>
+
+		  		<!-- Join Info -->
+				<div style="width:30%;float:right;display:block;background-color:#fafafa;padding:50px;margin-top: -75px;">
+					<div>	
+			  			<h3 class="quizletSubtitle" style="text-align: center;font-size:16px;margin-bottom:40px">Scan this code with your device</h3>
+			  			
+			  		</div>
+
+			  		<img style="width: 80%;height: 80%;margin-left:10%" id="QRCodeImage" />
+
+			  		<h3 class="quizletSubtitle" style="text-align: center;font-size:16px;margin-top:50px">or Join study session with code</h3>
+			  		<p id="code" style="font-size:38px;text-align: center;margin:0px;"></p>
+
+			  		<button id="clearButton" onclick="clearCurrentSession()" class="quizletButton"  style="cursor: pointer;margin:auto;border: none;margin-top:20px">Start new session</button>
+			  	</div>
+		  	</div>
+		</div>
+  	</div>	
+  </body>
+</html>
